@@ -102,6 +102,34 @@ mypy src/                 # Type check
 - If no successful run is detected within `health.max_silence_hours`, an alert email is sent to `ADMIN_EMAIL`
 - Point an uptime monitor (e.g., UptimeRobot) at `/health` for external alerting
 
+## Cowork Skill
+
+A Cowork skill is included so you can ask Claude to check for new Anthropic posts directly in chat — no GitHub access or API keys required.
+
+### Install
+
+1. Download `cowork-skill/anthropic-monitor-skill.zip` from this repo
+2. Open Cowork → Skills → Upload skill → select the ZIP
+3. Ask Claude: *"Check for new Anthropic posts"* or *"Run the news monitor"*
+
+### How it works
+
+The skill instructs Claude to fetch `anthropic.com/news` and `anthropic.com/research` directly (public GET requests), extract new post links, and summarize the top results in chat.
+
+This is separate from the GitHub Actions monitor — the cron job handles email delivery to subscribers; the skill gives you an on-demand chat summary.
+
+### Rebuild the skill ZIP
+
+```bash
+cd cowork-skill
+python3 -c "
+import zipfile
+with zipfile.ZipFile('anthropic-monitor-skill.zip', 'w') as z:
+    z.write('anthropic-monitor/Skill.md', 'Skill.md')
+print('Done')
+"
+```
+
 ## Architecture
 
 See [ARCHITECTURE.md](docs/ARCHITECTURE.md).
