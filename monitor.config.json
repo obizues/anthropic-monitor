@@ -1,0 +1,45 @@
+{
+  "feeds": [
+    {
+      "name": "Anthropic News",
+      "url": "https://www.anthropic.com/news",
+      "enabled": true
+    },
+    {
+      "name": "Anthropic Research",
+      "url": "https://www.anthropic.com/research",
+      "enabled": true
+    }
+  ],
+  "schedule": {
+    "check_interval_hours": 2,
+    "business_hours": {
+      "enabled": true,
+      "start": "09:00",
+      "end": "17:00",
+      "timezone": "America/New_York",
+      "weekdays_only": true
+    }
+  },
+  "notifications": {
+    "channels": ["email", "slack"],
+    "slack": {
+      "enabled": true,
+      "post_outside_business_hours": true
+    },
+    "email": {
+      "enabled": true,
+      "post_outside_business_hours": false,
+      "digest_on_next_business_day": true
+    }
+  },
+  "summaries": {
+    "enabled": true,
+    "model": "claude-opus-4-7",
+    "max_sentences": 3
+  },
+  "health": {
+    "max_silence_hours": 6,
+    "admin_alert_on_failure": true
+  }
+}
