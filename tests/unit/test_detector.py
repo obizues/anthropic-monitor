@@ -47,3 +47,11 @@ def test_idempotent_double_run(tmp_path, monkeypatch):
     second = find_new_posts(posts)
     assert len(first) == 1
     assert len(second) == 0
+
+
+def test_duplicate_candidates_in_same_run_are_deduplicated(tmp_path, monkeypatch):
+    monkeypatch.setattr("monitor.detector._STATE_PATH", tmp_path / "seen.json")
+    posts = [_make_post("https://anthropic.com/news/a"), _make_post("https://anthropic.com/news/a")]
+    result = find_new_posts(posts)
+    assert len(result) == 1
+    assert result[0].url == "https://anthropic.com/news/a"

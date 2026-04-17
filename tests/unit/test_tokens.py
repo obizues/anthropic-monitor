@@ -5,6 +5,7 @@ import pytest
 
 def test_roundtrip(monkeypatch):
     monkeypatch.setenv("ANTHROPIC_API_KEY", "test")
+    monkeypatch.setenv("RESEND_API_KEY", "test")
     monkeypatch.setenv("UNSUBSCRIBE_SECRET", "a" * 32)
     monkeypatch.setenv("CONFIG_API_KEY", "test")
 
@@ -16,6 +17,7 @@ def test_roundtrip(monkeypatch):
 
 def test_invalid_token(monkeypatch):
     monkeypatch.setenv("ANTHROPIC_API_KEY", "test")
+    monkeypatch.setenv("RESEND_API_KEY", "test")
     monkeypatch.setenv("UNSUBSCRIBE_SECRET", "a" * 32)
     monkeypatch.setenv("CONFIG_API_KEY", "test")
 
@@ -26,6 +28,7 @@ def test_invalid_token(monkeypatch):
 
 def test_email_normalized(monkeypatch):
     monkeypatch.setenv("ANTHROPIC_API_KEY", "test")
+    monkeypatch.setenv("RESEND_API_KEY", "test")
     monkeypatch.setenv("UNSUBSCRIBE_SECRET", "a" * 32)
     monkeypatch.setenv("CONFIG_API_KEY", "test")
 

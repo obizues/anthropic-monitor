@@ -14,7 +14,13 @@ _STATE_PATH = Path("state/seen_posts.json")
 
 def find_new_posts(candidates: list[Post]) -> list[Post]:
     seen = _load_seen()
-    new = [p for p in candidates if p.url not in seen]
+    seen_in_batch: set[str] = set()
+    new: list[Post] = []
+    for post in candidates:
+        if post.url in seen or post.url in seen_in_batch:
+            continue
+        seen_in_batch.add(post.url)
+        new.append(post)
     if new:
         _save_seen(seen | {p.url for p in new})
         log.info("new_posts_detected", count=len(new), urls=[p.url for p in new])
