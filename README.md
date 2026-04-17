@@ -98,7 +98,7 @@ mypy src/                 # Type check
 
 ## Health Monitoring
 
-- `GET /health` — returns `{"status": "healthy"|"degraded", "last_run": "..."}`
+- `GET /health` — returns monitor health and `nano_banaa_plugin` status (`available` or `missing`)
 - If no successful run is detected within `health.max_silence_hours`, an alert email is sent to `ADMIN_EMAIL`
 - Point an uptime monitor (e.g., UptimeRobot) at `/health` for external alerting
 
