@@ -2,6 +2,8 @@
 
 Enterprise-grade blog monitor that watches Anthropic's news and research pages, generates AI-powered summaries using Claude, and delivers alerts to Slack and email subscribers — with full business-hours awareness.
 
+Yes — this solution includes an Anthropic monitor out of the box via the default feeds in `monitor.config.json` (`/news` and `/research`).
+
 ## Quickstart
 
 ```bash
